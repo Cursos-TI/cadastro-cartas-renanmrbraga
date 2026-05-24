@@ -1,12 +1,19 @@
+// Início do código
 #include <stdio.h>
 
 int main()
 {
-    // Declaração das variáveis em snake case
+    // Cartas
     unsigned long int populacao_1, populacao_2;
     float area_1, area_2, pib_1, pib_2;
-    int opcao, pontos_turisticos_1, pontos_turisticos_2;
+    int pontos_turisticos_1, pontos_turisticos_2;
     char pais_1[40], pais_2[40];
+
+    // Menu
+    int opcao_1, opcao_2;
+    float valor_opcao_1_c1, valor_opcao_1_c2, valor_opcao_2_c1, valor_opcao_2_c2, soma_carta_1, soma_carta_2;
+    char *nome_opcao_1 = "";
+    char *nome_opcao_2 = "";
 
     // Entrada de dados da Carta 1
     printf("Digite o nome do País 1: ");
@@ -21,7 +28,7 @@ int main()
     scanf("%d", &pontos_turisticos_1);
 
     // Entrada de dados da Carta 2
-    printf("Digite o nome do País 2: ");
+    printf("\nDigite o nome do País 2: ");
     scanf(" %[^\n]", pais_2);
     printf("Digite a Populacao 2: ");
     scanf("%lu", &populacao_2);
@@ -38,151 +45,145 @@ int main()
     float densidade_2 = (float)populacao_2 / area_2;
     float pib_per_capita_2 = (pib_2 * 1e9) / (float)populacao_2;
 
-    // Exibição do menu interativo para escolha do atributo
-    printf("Escolha uma opção para comparar:\n");
+    // Menu Dinâmico 1
+    printf("\nEscolha o PRIMEIRO atributo para comparar:\n");
     printf("1. População\n");
     printf("2. Área\n");
     printf("3. PIB\n");
     printf("4. Pontos Turísticos\n");
     printf("5. Densidade\n");
-    scanf("%d", &opcao);
+    scanf("%d", &opcao_1);
 
-    // Impressão dos nomes dos países para contexto do jogador
-    printf("País 1: %s\n", pais_1);
-    printf("País 2: %s\n", pais_2);
-
-    // Estrutura de decisão para comparar a opção selecionada no menu
-    switch (opcao)
+    // Extração dos valores do primeiro atributo
+    switch (opcao_1)
     {
     case 1:
-        // Comparação baseada no atributo População
-        printf("Atributo: População\n");
-        printf("Carta 1 (%s): %lu\n", pais_1, populacao_1);
-        printf("Carta 2 (%s): %lu\n", pais_2, populacao_2);
-
-        // Estrutura condicional aninhada para verificar empate ou vencedor
-        if (populacao_1 == populacao_2)
-        {
-            printf("Empate!\n");
-        }
-        else
-        {
-            // Regra padrão: Maior valor vence
-            if (populacao_1 > populacao_2)
-            {
-                printf("Carta 1 (%s) venceu!\n", pais_1);
-            }
-            else
-            {
-                printf("Carta 2 (%s) venceu!\n", pais_2);
-            }
-        }
+        nome_opcao_1 = "Populacao";
+        valor_opcao_1_c1 = (float)populacao_1;
+        valor_opcao_1_c2 = (float)populacao_2;
         break;
-
     case 2:
-        // Comparação baseada no atributo Área
-        printf("Atributo: Área\n");
-        printf("Carta 1 (%s): %.2f\n", pais_1, area_1);
-        printf("Carta 2 (%s): %.2f\n", pais_2, area_2);
-
-        // Estrutura condicional aninhada para verificar empate ou vencedor
-        if (area_1 == area_2)
-        {
-            printf("Empate!\n");
-        }
-        else
-        {
-            // Regra padrão: Maior valor vence
-            if (area_1 > area_2)
-            {
-                printf("Carta 1 (%s) venceu!\n", pais_1);
-            }
-            else
-            {
-                printf("Carta 2 (%s) venceu!\n", pais_2);
-            }
-        }
+        nome_opcao_1 = "Area";
+        valor_opcao_1_c1 = area_1;
+        valor_opcao_1_c2 = area_2;
         break;
-
     case 3:
-        // Comparação baseada no atributo PIB
-        printf("Atributo: PIB\n");
-        printf("Carta 1 (%s): %.2f\n", pais_1, pib_1);
-        printf("Carta 2 (%s): %.2f\n", pais_2, pib_2);
-
-        // Estrutura condicional aninhada para verificar empate ou vencedor
-        if (pib_1 == pib_2)
-        {
-            printf("Empate!\n");
-        }
-        else
-        {
-            // Regra padrão: Maior valor vence
-            if (pib_1 > pib_2)
-            {
-                printf("Carta 1 (%s) venceu!\n", pais_1);
-            }
-            else
-            {
-                printf("Carta 2 (%s) venceu!\n", pais_2);
-            }
-        }
+        nome_opcao_1 = "PIB";
+        valor_opcao_1_c1 = pib_1;
+        valor_opcao_1_c2 = pib_2;
         break;
-
     case 4:
-        // Comparação baseada no atributo Pontos Turísticos
-        printf("Atributo: Pontos Turísticos\n");
-        printf("Carta 1 (%s): %d\n", pais_1, pontos_turisticos_1);
-        printf("Carta 2 (%s): %d\n", pais_2, pontos_turisticos_2);
-
-        // Estrutura condicional aninhada para verificar empate ou vencedor
-        if (pontos_turisticos_1 == pontos_turisticos_2)
-        {
-            printf("Empate!\n");
-        }
-        else
-        {
-            // Regra padrão: Maior valor vence
-            if (pontos_turisticos_1 > pontos_turisticos_2)
-            {
-                printf("Carta 1 (%s) venceu!\n", pais_1);
-            }
-            else
-            {
-                printf("Carta 2 (%s) venceu!\n", pais_2);
-            }
-        }
+        nome_opcao_1 = "Pontos Turisticos";
+        valor_opcao_1_c1 = (float)pontos_turisticos_1;
+        valor_opcao_1_c2 = (float)pontos_turisticos_2;
         break;
-
     case 5:
-        // Comparação baseada no atributo Densidade Populacional
-        printf("Atributo: Densidade\n");
-        printf("Carta 1 (%s): %.2f\n", pais_1, densidade_1);
-        printf("Carta 2 (%s): %.2f\n", pais_2, densidade_2);
-
-        // Estrutura condicional aninhada para verificar empate ou vencedor
-        if (densidade_1 == densidade_2)
-        {
-            printf("Empate!\n");
-        }
-        else
-        {
-            // Regra especial: Menor valor vence
-            if (densidade_1 < densidade_2)
-            {
-                printf("Carta 1 (%s) venceu!\n", pais_1);
-            }
-            else
-            {
-                printf("Carta 2 (%s) venceu!\n", pais_2);
-            }
-        }
+        nome_opcao_1 = "Densidade";
+        valor_opcao_1_c1 = densidade_1;
+        valor_opcao_1_c2 = densidade_2;
         break;
-
     default:
-        // Tratamento de segurança para opções inexistentes no menu
         printf("Opção inválida.\n");
+        return 0; // Encerra o jogo se errar o menu
+    }
+
+    // Menu Dinâmico 2
+    printf("\nEscolha o SEGUNDO atributo para comparar:\n");
+    if (opcao_1 != 1)
+        printf("1. População\n");
+    if (opcao_1 != 2)
+        printf("2. Área\n");
+    if (opcao_1 != 3)
+        printf("3. PIB\n");
+    if (opcao_1 != 4)
+        printf("4. Pontos Turísticos\n");
+    if (opcao_1 != 5)
+        printf("5. Densidade\n");
+    scanf("%d", &opcao_2);
+
+    // Validação extra para impedir a quebra da regra
+    if (opcao_1 == opcao_2)
+    {
+        printf("Erro: Você escolheu o mesmo atributo duas vezes.\n");
+        return 0;
+    }
+
+    // Extração dos valores do segundo atributo
+    switch (opcao_2)
+    {
+    case 1:
+        nome_opcao_2 = "Populacao";
+        valor_opcao_2_c1 = (float)populacao_1;
+        valor_opcao_2_c2 = (float)populacao_2;
         break;
+    case 2:
+        nome_opcao_2 = "Area";
+        valor_opcao_2_c1 = area_1;
+        valor_opcao_2_c2 = area_2;
+        break;
+    case 3:
+        nome_opcao_2 = "PIB";
+        valor_opcao_2_c1 = pib_1;
+        valor_opcao_2_c2 = pib_2;
+        break;
+    case 4:
+        nome_opcao_2 = "Pontos Turisticos";
+        valor_opcao_2_c1 = (float)pontos_turisticos_1;
+        valor_opcao_2_c2 = (float)pontos_turisticos_2;
+        break;
+    case 5:
+        nome_opcao_2 = "Densidade";
+        valor_opcao_2_c1 = densidade_1;
+        valor_opcao_2_c2 = densidade_2;
+        break;
+    default:
+        printf("Opção inválida.\n");
+        return 0;
+    }
+
+    // Se a opção escolhida for 5 (Densidade), soma-se o inverso (1 / valor) para beneficiar o menor número.
+    float parcela_1_c1 = (opcao_1 == 5) ? (1.0 / valor_opcao_1_c1) : valor_opcao_1_c1;
+    float parcela_1_c2 = (opcao_1 == 5) ? (1.0 / valor_opcao_1_c2) : valor_opcao_1_c2;
+
+    float parcela_2_c1 = (opcao_2 == 5) ? (1.0 / valor_opcao_2_c1) : valor_opcao_2_c1;
+    float parcela_2_c2 = (opcao_2 == 5) ? (1.0 / valor_opcao_2_c2) : valor_opcao_2_c2;
+
+    soma_carta_1 = parcela_1_c1 + parcela_2_c1;
+    soma_carta_2 = parcela_1_c2 + parcela_2_c2;
+
+    printf("\nResultado da Comparação:\n\n");
+
+    // Cabeçalho da tabela (alinhamento em colunas usando espaços)
+    printf("%-20s %-15s %-15s %-15s\n", "Atributo", pais_1, pais_2, "Vencedor");
+
+    // Análise do Atributo 1
+    int venceu_1 = (opcao_1 == 5) ? (valor_opcao_1_c1 < valor_opcao_1_c2) : (valor_opcao_1_c1 > valor_opcao_1_c2);
+    int empate_1 = (valor_opcao_1_c1 == valor_opcao_1_c2);
+    printf("%-20s %-15.2f %-15.2f %-15s\n", nome_opcao_1, valor_opcao_1_c1, valor_opcao_1_c2, empate_1 ? "Empate" : (venceu_1 ? pais_1 : pais_2));
+
+    // Análise do Atributo 2
+    int venceu_2 = (opcao_2 == 5) ? (valor_opcao_2_c1 < valor_opcao_2_c2) : (valor_opcao_2_c1 > valor_opcao_2_c2);
+    int empate_2 = (valor_opcao_2_c1 == valor_opcao_2_c2);
+    printf("%-20s %-15.2f %-15.2f %-15s\n", nome_opcao_2, valor_opcao_2_c1, valor_opcao_2_c2, empate_2 ? "Empate" : (venceu_2 ? pais_1 : pais_2));
+
+    // Quebra de linha para separar a soma
+    printf("\n");
+
+    // Análise da Soma Final
+    printf("%-20s %-15.2f %-15.2f ", "Soma Final", soma_carta_1, soma_carta_2);
+
+    // Estrutura de decisão final com if-else e ternário
+    if (soma_carta_1 == soma_carta_2)
+    {
+        printf("%-15s\n", "Empate"); // Completa a coluna Vencedor na tabela
+        printf("\nResultado Final: Empate absoluto!\n");
+    }
+    else
+    {
+        printf("%-15s\n", (soma_carta_1 > soma_carta_2) ? pais_1 : pais_2); // Completa a coluna Vencedor na tabela
+
+        // Uso do operador ternário para exibir dinamicamente o número e o nome do país vencedor
+        printf("\nResultado Final: Carta %d (%s) venceu!\n", (soma_carta_1 > soma_carta_2) ? 1 : 2, (soma_carta_1 > soma_carta_2) ? pais_1 : pais_2);
     }
 
     return 0;
